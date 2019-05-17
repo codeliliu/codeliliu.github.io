@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        JVM常见问题 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/">
+        </div>
+        <div class="name">
+            <i>Li Liu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-JVM垃圾回收的时候如何确定垃圾？是否知道什么是GC-Root？"><span class="toc-text">1. JVM垃圾回收的时候如何确定垃圾？是否知道什么是GC Root？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-如何盘点查看JVM系统默认值？"><span class="toc-text">2. 如何盘点查看JVM系统默认值？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-JVM的参数类型"><span class="toc-text">2.1 JVM的参数类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-查看JVM参数-第二种"><span class="toc-text">2.2 查看JVM参数(第二种)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-工作中常用参数"><span class="toc-text">3 工作中常用参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-强引用、软引用、弱引用、虚引用分别是什么？"><span class="toc-text">4.强引用、软引用、弱引用、虚引用分别是什么？</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        JVM常见问题
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-12-16 19:46:29</span></span>
+        
+        
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content ">
+        <h3 id="1-JVM垃圾回收的时候如何确定垃圾？是否知道什么是GC-Root？"><a href="#1-JVM垃圾回收的时候如何确定垃圾？是否知道什么是GC-Root？" class="headerlink" title="1. JVM垃圾回收的时候如何确定垃圾？是否知道什么是GC Root？"></a>1. JVM垃圾回收的时候如何确定垃圾？是否知道什么是GC Root？</h3><ul>
+<li><p>什么是垃圾？</p>
+<p>简单说就是内存中已经不再被使用的空间就是垃圾。</p>
+</li>
+<li><p>要进行垃圾回收，如何判断一个对象可以被回收？</p>
+<ul>
+<li><p>引用计数法（无法解决循环引用，已经不再使用）</p>
+</li>
+<li><p>枚举根节点做可达性分析（根搜索路径）</p>
+<p><img src="/images/jvm/GC roots.png" alt></p>
+<p>所谓的”GC roots”或者说traceing GC的“根集合”就是<strong>一组必须活跃的引用</strong>。</p>
+<p><strong>基本思路就是通过一系列名为“GC Roots”的对象作为起始点，</strong>从这个被称为GC Roots的对象开始向下搜索，如果一个对象到GC Roots没有任何引用链相连时，则说明此对象不可用。也即给定一个集合的引用作为根处出发，通过引用关系遍历对象树，能被遍历到的（可达的）对象就被判定为存活；没有遍历到的就自然被判定为死亡。</p>
+</li>
+</ul>
+</li>
+<li><p>Java中可以作为GC Roots的对象</p>
+<ul>
+<li>虚拟机栈（栈帧中的局部变量区，也叫局部变量表）中引用的对象；</li>
+<li>方法区中的类静态属性引用的对象；</li>
+<li>方法区中常量引用的对象；</li>
+<li>本地方法栈中JNI(Native)引用的对象；</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-如何盘点查看JVM系统默认值？"><a href="#2-如何盘点查看JVM系统默认值？" class="headerlink" title="2. 如何盘点查看JVM系统默认值？"></a>2. 如何盘点查看JVM系统默认值？</h3><h4 id="2-1-JVM的参数类型"><a href="#2-1-JVM的参数类型" class="headerlink" title="2.1 JVM的参数类型"></a>2.1 JVM的参数类型</h4><ol>
+<li>标配参数(了解)<ul>
+<li>-vsersion</li>
+<li>-help</li>
+<li>java -showversion</li>
+</ul>
+</li>
+<li>x参数(了解)<ul>
+<li>-Xint  解释执行</li>
+<li>Xcomp 第一次使用就编译成本地代码</li>
+<li>-Xmixed 混合模式</li>
+</ul>
+</li>
+<li><strong>xx参数</strong></li>
+</ol>
+<ul>
+<li><p>Boolean类型</p>
+<p>-XX:+或者-某个属性值</p>
+<p>+表示开启</p>
+<p>-表示关闭</p>
+<p>Case:</p>
+<ul>
+<li>是否打印GC手机细节：-XX:-/+PrintGCDetails</li>
+<li>是否使用串行垃圾收集器：-XX:-/+UseSerialGC</li>
+</ul>
+</li>
+<li><p>KV设值类型</p>
+<p>公式：-XX:属性key=属性value</p>
+<p>Case:</p>
+<ul>
+<li>-XX:MetaspaceSize=128m</li>
+<li>-XX:MaxTenuringThreshold=15</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li><p>jinfo举例，如何查看当前运行程序的配置(第一种查看方法)</p>
+<ul>
+<li>jinfo -flag 具体参数 java进程号</li>
+<li>jinfo -flags java进程号</li>
+</ul>
+</li>
+<li><p>例外（坑）</p>
+<p>两个经典参数-Xms和-Xmx，如何解释？</p>
+<ul>
+<li>-Xms 等价于：-XX:InitialHeapSize</li>
+<li>-Xmx 等价于：-XX:MaxHeapSize</li>
+</ul>
+</li>
+</ol>
+<h4 id="2-2-查看JVM参数-第二种"><a href="#2-2-查看JVM参数-第二种" class="headerlink" title="2.2 查看JVM参数(第二种)"></a>2.2 查看JVM参数(第二种)</h4><ul>
+<li><p>java -XX:+PrintFlagsInitial [-version]    (查看初始默认值)</p>
+</li>
+<li><p>java -XX:+PrintFlagsFinal [-version]     (主要查看修改更新)</p>
+<p>= 为为修改过的</p>
+<p>:=为修改过的</p>
+</li>
+<li><p>java -XX:+PrintCommandLineFlags [-version]</p>
+</li>
+</ul>
+<h4 id="3-工作中常用参数"><a href="#3-工作中常用参数" class="headerlink" title="3 工作中常用参数"></a>3 工作中常用参数</h4><ul>
+<li><p>-Xms 初始大小内存，默认为物理内存1/64</p>
+<p>等价于    -XX:InitialHeapSize</p>
+</li>
+<li><p>-Xmx 最大分配内存，默认为物理内存1/4(内存大于192M时，否则为一半)</p>
+<p>等价于    -XX:MaxHeapSize</p>
+</li>
+<li><p>-Xss 设置单个线程栈的大小，一般默认是512k~1024k</p>
+<p>等价于    -XX:ThreadStackSize</p>
+</li>
+<li><p>-Xmn 设置年轻代大小，一般不调</p>
+</li>
+<li><p>-XX:MetaspaceSize</p>
+<p>设置元空间大小：元空间的本质和永生代类似，都是对JVM规范中方法区的实现。不过元空间与永生代最大的区别在于：<strong>元空间并不在虚拟机中，二货思使用本地内存 </strong>。因此，默认情况下，元空间的大小仅受本地内存限制(但默认值不到21M,所以有时候要调整元空间的大小)。</p>
+<p>典型： -Xms128m -Xmx4096m -Xss1024k -XX:MetaspaceSize=512m -XX:+PrintCommandLineFlags </p>
+<p>-XX:+PrintGCDetails -XX:+UseSerialGC    (常用参数，值不一定是这个)</p>
+</li>
+<li><p>-XX:+PrintGCDetails</p>
+<ul>
+<li><p>输出详细GC收集日志信息</p>
+<p>[GC (Allocation Failure) [PSYoungGen: 1848K-&gt;488K(2560K)] 1848K-&gt;732K(9728K), 0.0013387 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]</p>
+<p>[Full GC (Allocation Failure) [PSYoungGen: 472K-&gt;0K(2560K)] [ParOldGen: 244K-&gt;621K(7168K)] 716K-&gt;621K(9728K), [Metaspace: 3425K-&gt;3425K(1056768K)], 0.0054785 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </p>
+</li>
+<li><p>GC</p>
+<p>举例：</p>
+<p><img src="/images/jvm/GC垃圾回收参数解读.png" alt></p>
+<p>[GC [PSYoungGen: 334480k-&gt;4736K(334848K)] 597914-&gt;270331(1017536K), 0.0209890 secs] [Times: user=0.03 sys=0.00, real=0.02 secs]</p>
+</li>
+<li><p>FullGC</p>
+<p>Full GC (Full GC大部分发生在老年代)：</p>
+<p>[Full GC (Allocation Failure) [PSYoungGen: 472K-&gt;0K(2560K)] [ParOldGen: 244K-&gt;621K(7168K)] 716K-&gt;621K(9728K), [Metaspace: 3425K-&gt;3425K(1056768K)], 0.0054785 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]</p>
+<p>举例：</p>
+<p><img src="/images/jvm/Full GC垃圾回收参数解读.png" alt></p>
+<p>[Full GC (System) [PSYoungGen: 3408K-&gt;0K(298688K)] [ParOldGen: 0K-&gt;3363K(682688K)] 3408K-&gt;3363K(991376K), [Metaspace: 10638K-&gt;10638K(131072K)], 0.0372600 secs] [Times: user=0.03 sys=0.00, real=0.04 secs]</p>
+</li>
+</ul>
+</li>
+<li><p>-XX:SurvivorRatio  设置新生代中eden和S0/S1的比例</p>
+<p>默认：-XX:SurvivorRatio=8，即 Eden:S0:S1 = 8:1:1</p>
+<p>假如：-XX:SurvivorRatio=4，即 Eden:S0:S1 = 4:1:1</p>
+<p>SurvivorRatio值就是设置Eden区在新生代的比例占多少，S0/S1相同</p>
+</li>
+<li><p>-XX:NewRatio </p>
+<p>配置年轻代与老年代在堆空间的占比；</p>
+<p>默认：</p>
+<p>​        -XX:NewRatio=2,新生代占1，老年代2，年轻代占整个堆的1/3;</p>
+<p>假如：</p>
+<p>​        -XX:NewRatio=4，新生代占1，老年代4，年轻代占整个堆的1/5。</p>
+</li>
+<li><p>-XX:MaxTenuringThreshold 设置垃圾的最大年龄</p>
+<p>默认值为15，超过这个值后对象由新生代转移至老年代</p>
+<p>java8设置值必须在0-15</p>
+</li>
+</ul>
+<h4 id="4-强引用、软引用、弱引用、虚引用分别是什么？"><a href="#4-强引用、软引用、弱引用、虚引用分别是什么？" class="headerlink" title="4.强引用、软引用、弱引用、虚引用分别是什么？"></a>4.强引用、软引用、弱引用、虚引用分别是什么？</h4><ul>
+<li><p>强引用</p>
+<p>默认的引用，大部分引用都是强引用</p>
+<p>*当内存不足时，JVM开始垃圾回收，对于强引用的对象，<strong>就算是出现了OOM也不会对该对象进行回收</strong>。</p>
+<p>强引用是我们最常见的普通对象引用，只要强引用指向一个对象，就能表明对象还“或者”，垃圾收集器不会回收这种对象。在Java中最常见的就是强引用，把一个对象赋给一个引用变量，这个引用类型就是一个强引用。当一个对象被强引用变量引用时，它处于可达状态，它是不可能被垃圾回收机制回收的，<strong>即使该对象以后永远都不会被用到JVM也不会回收</strong>。因此强引用是造成Java内存泄漏的主要原因之一。</p>
+<p>对于一个普通的对象，如果没有其他的引用关系，只要超过了引用的作用域或者显式地将相应（强）引用赋值为null,一般认为就是可以被垃圾收集的了（当然具体回收时机还是看垃圾收集策略）。</p>
+</li>
+<li><p>软引用</p>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

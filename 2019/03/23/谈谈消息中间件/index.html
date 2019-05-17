@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        谈谈消息中间件 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/">
+        </div>
+        <div class="name">
+            <i>Li Liu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-使用消息队列的理由-使用场景-优点，缺点"><span class="toc-text">1.使用消息队列的理由(使用场景,优点，缺点)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用场景与优点"><span class="toc-text">使用场景与优点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#解耦"><span class="toc-text">解耦</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#异步"><span class="toc-text">异步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#削峰"><span class="toc-text">削峰</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺点"><span class="toc-text">缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#系统可用性降低"><span class="toc-text">系统可用性降低</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#系统复杂性提高"><span class="toc-text">系统复杂性提高</span></a></li></ol></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#2-消息中间件如何选型"><span class="toc-text">2.消息中间件如何选型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-如何保证消息队列的高可用"><span class="toc-text">3.如何保证消息队列的高可用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#（1）RabbitMQ的高可用"><span class="toc-text">（1）RabbitMQ的高可用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#单机模式"><span class="toc-text">单机模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#普通集群模式"><span class="toc-text">普通集群模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#镜像集群模式"><span class="toc-text">镜像集群模式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（2）Kafka的高可用"><span class="toc-text">（2）Kafka的高可用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-如何保证消息不被重复消费？-如何保证消费消费的幂等性"><span class="toc-text">4.如何保证消息不被重复消费？(如何保证消费消费的幂等性)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#（1）消息重复发送的场景"><span class="toc-text">（1）消息重复发送的场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（2）如何保证幂等性"><span class="toc-text">（2）如何保证幂等性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-如何保证消息的可靠性传输（如何处理消息丢失的问题）"><span class="toc-text">5.如何保证消息的可靠性传输（如何处理消息丢失的问题）</span></a></li>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        谈谈消息中间件
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-03-23 22:10:10</span></span>
+        
+        
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content ">
+        <h2 id="1-使用消息队列的理由-使用场景-优点，缺点"><a href="#1-使用消息队列的理由-使用场景-优点，缺点" class="headerlink" title="1.使用消息队列的理由(使用场景,优点，缺点)"></a>1.使用消息队列的理由(使用场景,优点，缺点)</h2><h4 id="使用场景与优点"><a href="#使用场景与优点" class="headerlink" title="使用场景与优点"></a>使用场景与优点</h4><h5 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h5><pre><code>​    系统之间通信采用消息中间件，避免了直接使用接口调用，各个模块之间的功能调用借助于消息中间件进行通讯，模块之间的功能调用可以很方便的绑定与解除，业务及系统服务的耦合度降低，易于系统调整与扩展。
+</code></pre><h5 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h5><pre><code>​    在许多场景下，用户请求的模块(或其他)的功能实现的同时要完成其他几个模块的功能调用，但用户请求的所要求的返回结果并不依赖于其他几个模块的返回结果，往往这时候被调用的模块任务执行往往是耗时的，多个模块顺序调用的情况下时间累加将会比较耗时，给用户的使用体验会很不友好。这种情况下，用户请求的模块完成自身业务后向其他模块发送消息，快速返回结果，其他模块异步执行，用户体验良好。
+</code></pre><h5 id="削峰"><a href="#削峰" class="headerlink" title="削峰"></a>削峰</h5><pre><code>​    系统访问高峰时，每秒并发数量剧增，系统处理能力不足(请求是并发的，若每个请求对应的业务也并发执行，如耗时操作，并发访问数据库等，系统无法承受)，这时若采用消息队列，则可以在收到大量的并发请求后发送消息到消息队列，而消息消费者(其他功能模块)按固定的可以承受的压力消费队列消息，在消费消息后完成业务处理。这样一来，就可以将系统访问高峰时的压力通过消息队列分摊到其他时间段，及削减了峰值压力，也提高了闲时系统利用率。
+</code></pre><h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><h5 id="系统可用性降低"><a href="#系统可用性降低" class="headerlink" title="系统可用性降低"></a>系统可用性降低</h5><pre><code>​    系统引入的外部依赖越多，越容易挂掉，本来只需调用接口即可，只要各个模块及dubbo通信不出问题即可，现在要同时保证消息中间件不出问题。
+</code></pre><h5 id="系统复杂性提高"><a href="#系统复杂性提高" class="headerlink" title="系统复杂性提高"></a>系统复杂性提高</h5><pre><code>​    引入MQ，意味着必须处理消息生产者、‘消息中间件、消息消费者任意一端可能引起的消息丢失，消息重复发送，大量消息积压，如何保证消息的顺序发送等各种复杂问题。
+</code></pre><h2 id="2-消息中间件如何选型"><a href="#2-消息中间件如何选型" class="headerlink" title="2.消息中间件如何选型"></a>2.消息中间件如何选型</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">特性</th>
+<th style="text-align:center">ActiveMQ</th>
+<th style="text-align:center">RabbitMQ</th>
+<th style="text-align:center">RocketMQ</th>
+<th style="text-align:center">Kafka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">单机吞吐量</td>
+<td style="text-align:center">万级，比Rocket和Kafka低一个数量级</td>
+<td style="text-align:center">万级，比Rocket和Kafka低一个数量级</td>
+<td style="text-align:center">10万级</td>
+<td style="text-align:center">10万级，这是Kafka最大的优点。一般配合大数据类的系统来进行实时数据计算、日志采集等场景</td>
+</tr>
+<tr>
+<td style="text-align:center">topic数量对吞吐量的影响</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">topic可以达到几百、几千的级别，吞吐量会有小幅度下降</td>
+<td style="text-align:center">topic从几十个到几百个的时候，吞吐量会大量下降</td>
+</tr>
+<tr>
+<td style="text-align:center">时效性</td>
+<td style="text-align:center">ms级</td>
+<td style="text-align:center">微秒级，这是rabbirmq的一大特点，延迟最低</td>
+<td style="text-align:center">ms级</td>
+<td style="text-align:center">ms级别</td>
+</tr>
+<tr>
+<td style="text-align:center">可用性</td>
+<td style="text-align:center">高，基于主从架构实现高可用性</td>
+<td style="text-align:center">高，基于主从架构实现高可用性</td>
+<td style="text-align:center">非常高，分布式架构</td>
+<td style="text-align:center">非常高，分布式架构，一个数据多个副本，少数机器宕机，不会丢失数据，不会导致不可用</td>
+</tr>
+<tr>
+<td style="text-align:center">消息可靠性</td>
+<td style="text-align:center">有较低的概率丢失数据</td>
+<td style="text-align:center">基本不会丢失</td>
+<td style="text-align:center">经过参数优化配置，可以做到0丢失</td>
+<td style="text-align:center">经过参数优化配置，可以做到0丢失</td>
+</tr>
+<tr>
+<td style="text-align:center">核心特点</td>
+<td style="text-align:center">MQ领域的功能及其完备</td>
+<td style="text-align:center">基于erlang开发，所以并发能力很强，性能及其好，延时很低</td>
+<td style="text-align:center">MQ功能较为完善，还是分布是式的，扩展性好</td>
+<td style="text-align:center">功能较为简单，主要支持简单的MQ功能，在大数据领域的实时计算以及日志采集被大规模使用，是实时的标准</td>
+</tr>
+<tr>
+<td style="text-align:center">优劣势总结</td>
+<td style="text-align:center">非常成熟，功能强大，在业内大量的公司以及项目中都有应用。<br>偶尔会有低概率丢失消息，而且现在社区以及国内应用都越来越少，官方社区对其维护越来越少，而且主要是基于解耦合异步来用的，较少在大规模吞吐的场景中使用</td>
+<td style="text-align:center">erlang语言开发，性能及其好；而且开源提供的管理界面非常棒，用起来非常好用，在国内一些互联网近几年用rabbitmq也比较多。<br>但是问题也是显而易见的，RabbitMQ确实吞吐量会低一些，这是因为他做的实现机制比较重。而且erlang开发，…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+</tbody>
+</table>
+<p>综上所述，经过对比：</p>
+<p>​    一般的业务系统要引入MQ，最早大家都用ActiveMQ，但是现在大家用的都不多了，没经过大规模吞吐量场景的验证，社区也不是很活跃，不太推荐。</p>
+<p>​    后来大家都去用RabbitMQ，但是确实erlang语言阻止了大量的java工程师去深入研究和掌控他，对公司来说，几乎处于不可控的状态，但是确实是开源的，比较稳定的支持，活跃度也较高。</p>
+<p>​    ……</p>
+<h2 id="3-如何保证消息队列的高可用"><a href="#3-如何保证消息队列的高可用" class="headerlink" title="3.如何保证消息队列的高可用"></a>3.如何保证消息队列的高可用</h2><h4 id="（1）RabbitMQ的高可用"><a href="#（1）RabbitMQ的高可用" class="headerlink" title="（1）RabbitMQ的高可用"></a>（1）RabbitMQ的高可用</h4><p>​    RabbitMQ基于主从做高可用的</p>
+<h5 id="单机模式"><a href="#单机模式" class="headerlink" title="单机模式"></a>单机模式</h5><p>  ​    demo使用，生产环境不会使用。</p>
+<h5 id="普通集群模式"><a href="#普通集群模式" class="headerlink" title="普通集群模式"></a>普通集群模式</h5><p>  ​    就是在多台机器上启动多个rabbitmq实例，每个机器启动一个。但是所创建的queue，只会放在一个rabbitmq实例上，但是每个实例都同步queue的元数据，消费者消费消息时，如果连接的是另外一个实例，那么这个实例会从queue所在的实例上拉取数据过来。</p>
+<p>  ​    这种方式其实也并不好，没有分布式，就是个普通集群因为这会导致消费者只能选择每次随机连接一个实例然后拉取数据，或者固定连接queue所在实例消费数据，前者有数据拉取的开销，后者导致单实例性能瓶颈。</p>
+<p>  ​    而且如果放queue的实例宕机了，会导致接下来其他实例就无法从那个实例拉取，如果开启了消息持久化，让rabbit落地储存消息的话，消息不一定会丢，得等这个实例恢复了，然后才可以从这个queue拉取数据。</p>
+<p>  ​    所以普通集群模式并没有高可用，这种方案主要是提高吞吐量。</p>
+<h5 id="镜像集群模式"><a href="#镜像集群模式" class="headerlink" title="镜像集群模式"></a>镜像集群模式</h5><p>  ​    这种模式，才是rabbitmq的高可用方案，与普通集群模式不同，生产者所创建的queue，无论是元数据还是queue里的消息都会存在于多个实例上。每次写消息到queue的时候,rabbitmq都会把queue的消息自动同步到多个实例。</p>
+<p>  ​    镜像集群的好处是真正的高可用，任何一个机器宕机了，其他机器都可以使用。坏处在于：性能开销很大，消息同步到所有机器，导致网络带宽压力和消耗很重；另外。这样的话拓展性差，如果某个queue负载很重，加机器的话那么新增的机器也包含了这个queue的所有数据，并没有办法线性扩展queue。</p>
+<p>  ​    镜像集群的开启：rabbitmq有很好的管理控制台，可以在后台新增一个策略，这个策略就是集群模式的策略，指定的时候可以要求数据同步到所有节点，也可以要求同步到指定的节点。然后再次创建queue的时候，应用这个策略，就会自动将数据同步到其他的节点上。</p>
+<h4 id="（2）Kafka的高可用"><a href="#（2）Kafka的高可用" class="headerlink" title="（2）Kafka的高可用"></a>（2）Kafka的高可用</h4><p>  ​    分布式加主从复制……</p>
+<h2 id="4-如何保证消息不被重复消费？-如何保证消费消费的幂等性"><a href="#4-如何保证消息不被重复消费？-如何保证消费消费的幂等性" class="headerlink" title="4.如何保证消息不被重复消费？(如何保证消费消费的幂等性)"></a>4.如何保证消息不被重复消费？(如何保证消费消费的幂等性)</h2><h4 id="（1）消息重复发送的场景"><a href="#（1）消息重复发送的场景" class="headerlink" title="（1）消息重复发送的场景"></a>（1）消息重复发送的场景</h4><ul>
+<li>消费者已经处理完数据，但还没来得及确认，服务器宕机，rabbitmq(其他类似)没有收到确认会认为消息没有被消费，会重复发送消息给消费者</li>
+</ul>
+<h4 id="（2）如何保证幂等性"><a href="#（2）如何保证幂等性" class="headerlink" title="（2）如何保证幂等性"></a>（2）如何保证幂等性</h4><p>​    结合具体场景，比如：</p>
+<pre><code>- 如果消费者模块要执行数据库写，可以根据主键查一下，如果数据有了，就别插入了，update即可
+- 如果是写redis，那没问题，因为每次都指定set操作，覆盖而已不会有问题，redis天然幂等性
+- 不是以上场景，稍微复杂的情况下可以让生产者发送每条数据的时候，里面加一个全局的id类似订单id之类的东西，然后消费者消费消息的时候，先根据这个id去redis里面查一下(之前消费的消息数据保存在redis中)，如果没有消费过，就处理，然后将这个id写到redis。如果消费过了，就不再处理，保证别重复处理相同的消息即可。
+- 还有基于数据库的唯一键来保证重复数据不会重复插入多条。
+</code></pre><p>​    总之保证MQ的幂等性要结合具体业务来看。</p>
+<h2 id="5-如何保证消息的可靠性传输（如何处理消息丢失的问题）"><a href="#5-如何保证消息的可靠性传输（如何处理消息丢失的问题）" class="headerlink" title="5.如何保证消息的可靠性传输（如何处理消息丢失的问题）"></a>5.如何保证消息的可靠性传输（如何处理消息丢失的问题）</h2>
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
