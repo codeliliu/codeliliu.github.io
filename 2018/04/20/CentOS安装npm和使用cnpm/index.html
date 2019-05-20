@@ -11,7 +11,7 @@
 
     <title>
         
-        
+        CentOS7安装npm和使用cnpm - undefined
         
     </title>
 
@@ -53,7 +53,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li class="active">
+            <li>
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>主页</span>
@@ -81,6 +81,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装npm"><span class="toc-text">1.安装npm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用淘宝的cnpm"><span class="toc-text">2.使用淘宝的cnpm</span></a></li></ol>
+</div>
+    
 </div>
 
 
@@ -104,111 +108,48 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-<div class="post-preview-container" style="min-height: 720px">
-    
-    <div class="post-preview">
-        <div class="post-time">2019-03-23</div>
-        <div class="post-info">
-            <a href="/2019/03/23/谈谈消息中间件/">
-                <h3>
-                    谈谈消息中间件
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
+
+
+<div class="post-container">
+    <div class="post-title">
+        CentOS7安装npm和使用cnpm
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-12-16</div>
-        <div class="post-info">
-            <a href="/2018/12/16/JVM常见问题/">
-                <h3>
-                    JVM常见问题
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-04-20 21:40:20</span></span>
+        
+        
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-11-16</div>
-        <div class="post-info">
-            <a href="/2018/11/16/深入理解JVM/">
-                <h3>
-                    深入理解JVM
-                </h3>
-            </a>
-            <p>
-                
-            </p>
+    <div class="post-content ">
+        <h3 id="1-安装npm"><a href="#1-安装npm" class="headerlink" title="1.安装npm"></a>1.安装npm</h3><p>npm命令是node.js的npm 插件管理器，也就是下载插件安装插件的管理器。</p>
+<p>安装命令:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nodejs</span><br></pre></td></tr></table></figure>
+<p>若报错:没有可用软件包 nodejs。</p>
+<p>则先下载epel-release</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release</span><br></pre></td></tr></table></figure>
+<p>安装成功后可查看版本:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p>或:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+<h3 id="2-使用淘宝的cnpm"><a href="#2-使用淘宝的cnpm" class="headerlink" title="2.使用淘宝的cnpm"></a>2.使用淘宝的cnpm</h3><p>因为npm下载都是国外服务器很慢会掉线，我们需要使用淘宝的npm镜像cnpm。</p>
+<p>命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<p>之后就可以使用cnpm下载(将npm命令替换为cnpm即可)</p>
+
+        
+        <br>
+        <div id="comment-container">
         </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-10-25</div>
-        <div class="post-info">
-            <a href="/2018/10/25/Java并发/">
-                <h3>
-                    Java并发
-                </h3>
-            </a>
-            <p>
-                
-            </p>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
         </div>
+
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-04-20</div>
-        <div class="post-info">
-            <a href="/2018/04/20/CentOS安装npm和使用cnpm/">
-                <h3>
-                    CentOS7安装npm和使用cnpm
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-04-15</div>
-        <div class="post-info">
-            <a href="/2018/04/15/CentOS更换yum源/">
-                <h3>
-                    CentOS7更换yum源
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-03-28</div>
-        <div class="post-info">
-            <a href="/2018/03/28/深入剖析HashMap/">
-                <h3>
-                    深入剖析HashMap
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
 </div>
-<ul class="pager">
-    
-    
-</ul>
 
     </div>
 </div>
@@ -248,7 +189,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = ""
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
