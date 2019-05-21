@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,7 +70,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '7.1.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -100,7 +100,7 @@
 <meta property="og:title" content="Li Liu的个人博客">
 <meta property="og:url" content="http://codeliliu.github.io/index.html">
 <meta property="og:site_name" content="Li Liu的个人博客">
-<meta property="og:locale" content="zh">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Li Liu的个人博客">
 
@@ -161,7 +161,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -189,7 +189,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -217,7 +217,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -234,7 +234,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -251,7 +251,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -268,7 +268,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
@@ -276,9 +276,6 @@
       
     </ul>
   
-
-  
-    
 
   
 
@@ -300,6 +297,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -358,14 +358,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-03-23 22:10:10" itemprop="dateCreated datePublished" datetime="2019-03-23T22:10:10+08:00">2019-03-23</time>
+              <time title="创建时间：2019-03-23 22:10:10" itemprop="dateCreated datePublished" datetime="2019-03-23T22:10:10+08:00">2019-03-23</time>
             
 
             
@@ -380,13 +380,38 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">更新于</span>
                 
-                <time title="Modified: 2019-05-17 09:05:30" itemprop="dateModified" datetime="2019-05-17T09:05:30+08:00">2019-05-17</time>
+                <time title="修改时间：2019-05-21 23:52:08" itemprop="dateModified" datetime="2019-05-21T23:52:08+08:00">2019-05-21</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构/" itemprop="url" rel="index"><span itemprop="name">架构</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构/消息中间件/" itemprop="url" rel="index"><span itemprop="name">消息中间件</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -419,15 +444,14 @@
         
           
             <p>
-              1.使用消息队列的理由(使用场景,优点，缺点)使用场景与优点解耦​    系统之间通信采用消息中间件，避免了直接使用接口调用，各个模块之间的功能调用借助于消息中间件进行通讯，模块之间的功能调用可以很方便的绑定与解除，业务及系统服务的耦合度降低，易于系统调整与扩展。
-异步​    在许多场景下，用户请
+              1.使用消息队列的理由(使用场景,优点，缺点)使用场景与优点解耦​    系统之间通信采用消息中间件，避免了直接使用接口调用，各个模块之间的功能调用借助于消息中间件进行通讯，模块之间的功能调用可以很方
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/2019/03/23/谈谈消息中间件/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -524,14 +548,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-12-16 19:46:29" itemprop="dateCreated datePublished" datetime="2018-12-16T19:46:29+08:00">2018-12-16</time>
+              <time title="创建时间：2018-12-16 19:46:29" itemprop="dateCreated datePublished" datetime="2018-12-16T19:46:29+08:00">2018-12-16</time>
             
 
             
@@ -546,13 +570,31 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">更新于</span>
                 
-                <time title="Modified: 2019-05-17 09:04:25" itemprop="dateModified" datetime="2019-05-17T09:04:25+08:00">2019-05-17</time>
+                <time title="修改时间：2019-05-21 23:50:57" itemprop="dateModified" datetime="2019-05-21T23:50:57+08:00">2019-05-21</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -591,18 +633,14 @@
 
 要进行垃圾回收，如何判断一个对象可以被回收？
 
-引用计数法（无法解决循环引用，已经不再使用）
-
-枚举根节点做可达性分析（根搜索路径）
-
-所谓的”GC roots”或
+引用计数法（无法
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/2018/12/16/JVM常见问题/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -699,14 +737,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-11-16 22:18:39" itemprop="dateCreated datePublished" datetime="2018-11-16T22:18:39+08:00">2018-11-16</time>
+              <time title="创建时间：2018-11-16 22:18:39" itemprop="dateCreated datePublished" datetime="2018-11-16T22:18:39+08:00">2018-11-16</time>
             
 
             
@@ -721,9 +759,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">更新于</span>
                 
-                <time title="Modified: 2019-05-17 09:05:00" itemprop="dateModified" datetime="2019-05-17T09:05:00+08:00">2019-05-17</time>
+                <time title="修改时间：2019-05-17 09:05:00" itemprop="dateModified" datetime="2019-05-17T09:05:00+08:00">2019-05-17</time>
               
             
           </span>
@@ -763,19 +801,14 @@
               1.类加载
 1.1 概念在java代码中，类型(不是对象)的加载、连接与初始化过程都是在程序运行期间完成的。
 这样提供了更大的灵活性，增加了更多的可能性。
-1.2 生命周期 在如下情况下下，Java虚拟机将结束生命周期：
-
-执行了System.exit()方法
-
-程序正常执行结束
-程序在执行过程中遇
+1.2 生命周期 在如下情况下下，Java虚
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/2018/11/16/深入理解JVM/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -872,14 +905,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-10-25 20:36:36" itemprop="dateCreated datePublished" datetime="2018-10-25T20:36:36+08:00">2018-10-25</time>
+              <time title="创建时间：2018-10-25 20:36:36" itemprop="dateCreated datePublished" datetime="2018-10-25T20:36:36+08:00">2018-10-25</time>
             
 
             
@@ -894,13 +927,31 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">更新于</span>
                 
-                <time title="Modified: 2019-05-17 09:03:40" itemprop="dateModified" datetime="2019-05-17T09:03:40+08:00">2019-05-17</time>
+                <time title="修改时间：2019-05-21 23:51:47" itemprop="dateModified" datetime="2019-05-21T23:51:47+08:00">2019-05-21</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java并发/" itemprop="url" rel="index"><span itemprop="name">Java并发</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -935,14 +986,14 @@
             <p>
               栅栏模式CountDownLatch  减计数器：计数器减到0时，继续执行。即计数器在多个线程内依次减到0时，被减计数器栓等待的线程才会继续向下执行。
   demo:
-  package com.lixiang.concurrent.barrier;import java.util.Random;i
+  package com.li
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/2018/10/25/Java并发/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -1039,14 +1090,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-04-20 21:40:20" itemprop="dateCreated datePublished" datetime="2018-04-20T21:40:20+08:00">2018-04-20</time>
+              <time title="创建时间：2018-04-20 21:40:20" itemprop="dateCreated datePublished" datetime="2018-04-20T21:40:20+08:00">2018-04-20</time>
             
 
             
@@ -1061,13 +1112,38 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">更新于</span>
                 
-                <time title="Modified: 2019-05-20 22:40:52" itemprop="dateModified" datetime="2019-05-20T22:40:52+08:00">2019-05-20</time>
+                <time title="修改时间：2019-05-21 23:51:15" itemprop="dateModified" datetime="2019-05-21T23:51:15+08:00">2019-05-21</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/安装配置/" itemprop="url" rel="index"><span itemprop="name">安装配置</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1104,17 +1180,14 @@
 安装命令:
 yum install nodejs
 若报错:没有可用软件包 nodejs。
-则先下载epel-release
-yum install epel-release
-安装成功后可查看版本:
-npm
+则先下载epe
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/2018/04/20/CentOS安装npm和使用cnpm/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -1211,14 +1284,14 @@ npm
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-04-15 20:39:16" itemprop="dateCreated datePublished" datetime="2018-04-15T20:39:16+08:00">2018-04-15</time>
+              <time title="创建时间：2018-04-15 20:39:16" itemprop="dateCreated datePublished" datetime="2018-04-15T20:39:16+08:00">2018-04-15</time>
             
 
             
@@ -1233,13 +1306,38 @@ npm
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">更新于</span>
                 
-                <time title="Modified: 2019-05-20 22:39:50" itemprop="dateModified" datetime="2019-05-20T22:39:50+08:00">2019-05-20</time>
+                <time title="修改时间：2019-05-21 23:51:22" itemprop="dateModified" datetime="2019-05-21T23:51:22+08:00">2019-05-21</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/安装配置/" itemprop="url" rel="index"><span itemprop="name">安装配置</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1274,14 +1372,14 @@ npm
             <p>
               1.备份进入yum.repo.d目录下将原来的文件重命名备份
 cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup
-2.下载yum源sohu的源：http://mirrors.sohu.com/help/CentOS-Base-
+2.下载yu
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/2018/04/15/CentOS更换yum源/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -1378,14 +1476,14 @@ cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-03-28 17:01:42" itemprop="dateCreated datePublished" datetime="2018-03-28T17:01:42+08:00">2018-03-28</time>
+              <time title="创建时间：2018-03-28 17:01:42" itemprop="dateCreated datePublished" datetime="2018-03-28T17:01:42+08:00">2018-03-28</time>
             
 
             
@@ -1400,9 +1498,9 @@ cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">更新于</span>
                 
-                <time title="Modified: 2019-05-21 23:03:31" itemprop="dateModified" datetime="2019-05-21T23:03:31+08:00">2019-05-21</time>
+                <time title="修改时间：2019-05-21 23:50:43" itemprop="dateModified" datetime="2019-05-21T23:50:43+08:00">2019-05-21</time>
               
             
           </span>
@@ -1416,14 +1514,14 @@ cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/jdk/" itemprop="url" rel="index"><span itemprop="name">jdk</span></a></span>
 
                 
                 
-                  , 
+                  ，
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/jdk/集合/" itemprop="url" rel="index"><span itemprop="name">集合</span></a></span>
@@ -1465,14 +1563,14 @@ cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup
           
             <p>
               1 为什么需要HashMap？用处？首先，Map是一个映射键和值的对象，类似于字典(Python中就有字典的概念)。
-如果不考虑Map，我们常用的储存元素的容器大多是数组和链表。数组储存元素的好处在于根据下标查找元素迅速，因为不需要遍历元素，但其增加或删除元素却需要移动大量元素，因此数组在增删上性能
+如果不考虑Map，我们常用的储存元素的容器大多是数组和链表。数组储存元素的好处在于
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/2018/03/28/深入剖析HashMap/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -1559,7 +1657,7 @@ cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">7</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
               
@@ -1579,8 +1677,20 @@ cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
-                    <span class="site-state-item-name">categories</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
               
@@ -1597,7 +1707,7 @@ cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup
                       
                     
                     <span class="site-state-item-count">2</span>
-                    <span class="site-state-item-name">tags</span>
+                    <span class="site-state-item-name">标签</span>
                   
                 </div>
               
@@ -1650,7 +1760,7 @@ cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
@@ -1658,7 +1768,7 @@ cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
 
 
 
@@ -1746,7 +1856,10 @@ cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup
   
 
 
-  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
 
 
 
