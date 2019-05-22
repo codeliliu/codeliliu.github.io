@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="1.备份进入yum.repo.d目录下将原来的文件重命名备份 12cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup 2.下载yum源sohu的源：http://mirrors.sohu.com/help/CentOS-Base-sohu.repo 163的源：http://mirrors.163.com/.help/Cen">
+  <meta name="description" content="前言&amp;emsp;&amp;emsp;说到Java并发编程，一个最值得我们关心的问题就是：如何保证并发量(性能)的同时保证数据的一致性(安全性)。在实现Java并发编程的方式上虽然不一，根据具体的业务需要可以选择不同的实现，只要能够满足并发与性能的要求即可。最直接的方式便是通过synchronized关键字或者Lock同步代码块或方法，通过多个线程之间不断地抢占资源执行程序从而提高性能的同时保证共享数据的一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS7更换yum源">
-<meta property="og:url" content="http://codeliliu.github.io/2018/04/15/CentOS更换yum源/index.html">
+<meta property="og:title" content="谈谈无锁机制:并发包atomic及CAS">
+<meta property="og:url" content="http://codeliliu.github.io/2018/11/22/谈谈无锁机制-并发包atomic及CAS/index.html">
 <meta property="og:site_name" content="Li Liu的个人博客">
-<meta property="og:description" content="1.备份进入yum.repo.d目录下将原来的文件重命名备份 12cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup 2.下载yum源sohu的源：http://mirrors.sohu.com/help/CentOS-Base-sohu.repo 163的源：http://mirrors.163.com/.help/Cen">
+<meta property="og:description" content="前言&amp;emsp;&amp;emsp;说到Java并发编程，一个最值得我们关心的问题就是：如何保证并发量(性能)的同时保证数据的一致性(安全性)。在实现Java并发编程的方式上虽然不一，根据具体的业务需要可以选择不同的实现，只要能够满足并发与性能的要求即可。最直接的方式便是通过synchronized关键字或者Lock同步代码块或方法，通过多个线程之间不断地抢占资源执行程序从而提高性能的同时保证共享数据的一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-21T15:51:22.354Z">
+<meta property="og:updated_time" content="2019-05-22T13:02:45.346Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS7更换yum源">
-<meta name="twitter:description" content="1.备份进入yum.repo.d目录下将原来的文件重命名备份 12cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup 2.下载yum源sohu的源：http://mirrors.sohu.com/help/CentOS-Base-sohu.repo 163的源：http://mirrors.163.com/.help/Cen">
+<meta name="twitter:title" content="谈谈无锁机制:并发包atomic及CAS">
+<meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;说到Java并发编程，一个最值得我们关心的问题就是：如何保证并发量(性能)的同时保证数据的一致性(安全性)。在实现Java并发编程的方式上虽然不一，根据具体的业务需要可以选择不同的实现，只要能够满足并发与性能的要求即可。最直接的方式便是通过synchronized关键字或者Lock同步代码块或方法，通过多个线程之间不断地抢占资源执行程序从而提高性能的同时保证共享数据的一">
 
 
 
@@ -114,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://codeliliu.github.io/2018/04/15/CentOS更换yum源/">
+  <link rel="canonical" href="http://codeliliu.github.io/2018/11/22/谈谈无锁机制-并发包atomic及CAS/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>CentOS7更换yum源 | Li Liu的个人博客</title>
+  <title>谈谈无锁机制:并发包atomic及CAS | Li Liu的个人博客</title>
   
 
 
@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://codeliliu.github.io/2018/04/15/CentOS更换yum源/">
+    <link itemprop="mainEntityOfPage" href="http://codeliliu.github.io/2018/11/22/谈谈无锁机制-并发包atomic及CAS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Li Liu">
@@ -340,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CentOS7更换yum源
+          <h1 class="post-title" itemprop="name headline">谈谈无锁机制:并发包atomic及CAS
 
               
             
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2018-04-15 20:39:16" itemprop="dateCreated datePublished" datetime="2018-04-15T20:39:16+08:00">2018-04-15</time>
+              <time title="创建时间：2018-11-22 20:08:21" itemprop="dateCreated datePublished" datetime="2018-11-22T20:08:21+08:00">2018-11-22</time>
             
 
             
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 23:51:22" itemprop="dateModified" datetime="2019-05-21T23:51:22+08:00">2019-05-21</time>
+                <time title="修改时间：2019-05-22 21:02:45" itemprop="dateModified" datetime="2019-05-22T21:02:45+08:00">2019-05-22</time>
               
             
           </span>
@@ -400,14 +400,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/安装配置/" itemprop="url" rel="index"><span itemprop="name">安装配置</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java并发编程/" itemprop="url" rel="index"><span itemprop="name">Java并发编程</span></a></span>
 
                 
                 
@@ -442,26 +435,20 @@
       
 
       
-        <h3 id="1-备份"><a href="#1-备份" class="headerlink" title="1.备份"></a>1.备份</h3><p>进入yum.repo.d目录下将原来的文件重命名备份</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d</span><br><span class="line">mv CentOS-Base.repo CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure>
-<h3 id="2-下载yum源"><a href="#2-下载yum源" class="headerlink" title="2.下载yum源"></a>2.下载yum源</h3><p>sohu的源：<a href="http://mirrors.sohu.com/help/CentOS-Base-sohu.repo" target="_blank" rel="noopener">http://mirrors.sohu.com/help/CentOS-Base-sohu.repo</a></p>
-<p>163的源：<a href="http://mirrors.163.com/.help/CentOS6-Base-163.repo" target="_blank" rel="noopener">http://mirrors.163.com/.help/CentOS6-Base-163.repo</a></p>
-<p>阿里云的源：<a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-7.repo</a> </p>
-<p>例如更换为阿里云的yum源:</p>
-<p>CentOS7:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
-<p>CentOs6:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br></pre></td></tr></table></figure>
-<h3 id="3-更新yum源"><a href="#3-更新yum源" class="headerlink" title="3.更新yum源"></a>3.更新yum源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update</span><br></pre></td></tr></table></figure>
-<h3 id="4-更新yum源不更新内核"><a href="#4-更新yum源不更新内核" class="headerlink" title="4.更新yum源不更新内核"></a>4.更新yum源不更新内核</h3><p>若更新yum源时不想更新系统内核，则有两种方案：</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&emsp;&emsp;说到Java并发编程，一个最值得我们关心的问题就是：如何保证并发量(性能)的同时保证数据的一致性(安全性)。在实现Java并发编程的方式上虽然不一，根据具体的业务需要可以选择不同的实现，只要能够满足并发与性能的要求即可。最直接的方式便是通过synchronized关键字或者Lock同步代码块或方法，通过多个线程之间不断地抢占资源执行程序从而提高性能的同时保证共享数据的一致性。</p>
+<p>&emsp;&emsp;通过synchronized关键字或者Lock加锁固然能在实现在多线程环境下的共享数据的安全问题，但这种方式其实是重量级锁，保证共享数据安全的同时确牺牲了并发量，多个线程之间在任意时刻只能有一个线程独占锁，其他线程只能互斥区释放锁后再抢占资源，对于互斥区来说甚至和串行差不多。为了保护共享数据的一致性而对整个代码块加锁，进而牺牲并发量，这种方式在某些情况下可能适合，比如同时要多个共享变量的安全时。但很多时候我们需要一种更轻量级的加锁机制(或者说无锁机制)来实现多线程环境的高并发与数据一致性，本文要讨论的并发包atomic下的各种原子类就能实现这样的功能。接下来本文会尝试讲解各种原子类AtomicXXX的功能，以及实际到的CAS原理及volatile关键字。</p>
+<h2 id="原子类-AtomicXXX"><a href="#原子类-AtomicXXX" class="headerlink" title="原子类:AtomicXXX"></a>原子类:AtomicXXX</h2><p>&emsp;&emsp;在<strong>java.util.concurrent.atomic</strong>下jdk为我们提供了很多原子类，比较常用的有:AtomicBoolean，AtomicInteger,AtomicLong以及AtomicReference。首先，这些原子类能够保证JMM(Java内存模型)中的三大特性:</p>
 <ul>
-<li><p><strong>修改yum的配置文件</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.conf</span><br><span class="line"><span class="meta">#</span>在最后添加</span><br><span class="line">exclude=kernel*</span><br><span class="line">exclude=centos-release*</span><br></pre></td></tr></table></figure>
+<li><p>原子性：原子性即指在一个操作中，不能被其他操作中断，类似数据库事务的原子性，一个操作就是一个原子操作，保证了线程的安全和数据可靠；</p>
+<p>比如，对于一个静态全局变量int i，两个线程同时对它赋值，线程A 给他赋值 1，线程 B 给它赋值为 -1,。那么不管这两个线程以何种方式，何种步调工作，i的值要么是1，要么是-1，线程A和线程B之间是没有干扰的。这就是原子性的一个特点，不可被中断。</p>
 </li>
-<li><p><strong>直接在yum的命令后面加上如下的参数</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum --exclude=kernel* update</span><br></pre></td></tr></table></figure>
+<li><p>可见性：指当一个线程修改了某一个共享变量的值，其他线程是否能够立即知道这个修改；</p>
+<p>显然，对于串行程序来说，可见性问题  是不存在。因为你在任何一个操作步骤中修改某个变量，那么在后续的步骤中，读取这个变量的值，一定是修改后的新值。但是这个问题在并行程序中就不见得了。如果一个线程修改了某一个全局变量，那么其他线程未必可以马上知道这个改动。</p>
+</li>
+<li><p>有序性：有序性是指在本线程内观察，所有操作都是有序的。在一个线程观察另一个线程，所有操作都是无序的。</p>
 </li>
 </ul>
+<p>&emsp;&emsp;只有满足这三大特性，多线程下的共享变量才能够保证其安全，而原子类就是在单个原子类的实例上保证这三大特性(注意，只能保证单个，多个共享变量的线程安全性还是要通过加锁机制来保证)。</p>
 
       
     </div>
@@ -492,8 +479,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/28/深入剖析HashMap/" rel="next" title="深入剖析HashMap">
-                <i class="fa fa-chevron-left"></i> 深入剖析HashMap
+              <a href="/2018/11/16/深入理解JVM/" rel="next" title="深入理解JVM">
+                <i class="fa fa-chevron-left"></i> 深入理解JVM
               </a>
             
           </div>
@@ -502,8 +489,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/20/CentOS安装npm和使用cnpm/" rel="prev" title="CentOS7安装npm和使用cnpm">
-                CentOS7安装npm和使用cnpm <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/16/JVM常见问题/" rel="prev" title="JVM常见问题">
+                JVM常见问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -661,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-备份"><span class="nav-text">1.备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-下载yum源"><span class="nav-text">2.下载yum源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-更新yum源"><span class="nav-text">3.更新yum源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-更新yum源不更新内核"><span class="nav-text">4.更新yum源不更新内核</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原子类-AtomicXXX"><span class="nav-text">原子类:AtomicXXX</span></a></li></ol></div>
             
 
           </div>
