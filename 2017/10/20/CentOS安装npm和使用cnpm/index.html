@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="1.备份进入yum.repo.d目录下将原来的文件重命名备份 12cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup 2.下载yum源sohu的源：http://mirrors.sohu.com/help/CentOS-Base-sohu.repo 163的源：http://mirrors.163.com/.help/Cen">
+  <meta name="description" content="1.安装npmnpm命令是node.js的npm 插件管理器，也就是下载插件安装插件的管理器。 安装命令: 1yum install nodejs 若报错:没有可用软件包 nodejs。 则先下载epel-release 1yum install epel-release 安装成功后可查看版本: 1npm -v 或: 1node -v 2.使用淘宝的cnpm因为npm下载都是国外服务器很慢会掉线，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS7更换yum源">
-<meta property="og:url" content="http://codeliliu.github.io/2018/04/15/CentOS更换yum源/index.html">
+<meta property="og:title" content="CentOS7安装npm和使用cnpm">
+<meta property="og:url" content="http://codeliliu.github.io/2017/10/20/CentOS安装npm和使用cnpm/index.html">
 <meta property="og:site_name" content="Li Liu的个人博客">
-<meta property="og:description" content="1.备份进入yum.repo.d目录下将原来的文件重命名备份 12cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup 2.下载yum源sohu的源：http://mirrors.sohu.com/help/CentOS-Base-sohu.repo 163的源：http://mirrors.163.com/.help/Cen">
+<meta property="og:description" content="1.安装npmnpm命令是node.js的npm 插件管理器，也就是下载插件安装插件的管理器。 安装命令: 1yum install nodejs 若报错:没有可用软件包 nodejs。 则先下载epel-release 1yum install epel-release 安装成功后可查看版本: 1npm -v 或: 1node -v 2.使用淘宝的cnpm因为npm下载都是国外服务器很慢会掉线，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-21T15:51:22.354Z">
+<meta property="og:updated_time" content="2019-05-27T13:11:06.804Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS7更换yum源">
-<meta name="twitter:description" content="1.备份进入yum.repo.d目录下将原来的文件重命名备份 12cd /etc/yum.repos.dmv CentOS-Base.repo CentOS-Base.repo.backup 2.下载yum源sohu的源：http://mirrors.sohu.com/help/CentOS-Base-sohu.repo 163的源：http://mirrors.163.com/.help/Cen">
+<meta name="twitter:title" content="CentOS7安装npm和使用cnpm">
+<meta name="twitter:description" content="1.安装npmnpm命令是node.js的npm 插件管理器，也就是下载插件安装插件的管理器。 安装命令: 1yum install nodejs 若报错:没有可用软件包 nodejs。 则先下载epel-release 1yum install epel-release 安装成功后可查看版本: 1npm -v 或: 1node -v 2.使用淘宝的cnpm因为npm下载都是国外服务器很慢会掉线，">
 
 
 
@@ -114,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://codeliliu.github.io/2018/04/15/CentOS更换yum源/">
+  <link rel="canonical" href="http://codeliliu.github.io/2017/10/20/CentOS安装npm和使用cnpm/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>CentOS7更换yum源 | Li Liu的个人博客</title>
+  <title>CentOS7安装npm和使用cnpm | Li Liu的个人博客</title>
   
 
 
@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://codeliliu.github.io/2018/04/15/CentOS更换yum源/">
+    <link itemprop="mainEntityOfPage" href="http://codeliliu.github.io/2017/10/20/CentOS安装npm和使用cnpm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Li Liu">
@@ -340,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CentOS7更换yum源
+          <h1 class="post-title" itemprop="name headline">CentOS7安装npm和使用cnpm
 
               
             
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2018-04-15 20:39:16" itemprop="dateCreated datePublished" datetime="2018-04-15T20:39:16+08:00">2018-04-15</time>
+              <time title="创建时间：2017-10-20 21:40:20" itemprop="dateCreated datePublished" datetime="2017-10-20T21:40:20+08:00">2017-10-20</time>
             
            <!-- 不显示更新时间
             
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 23:51:22" itemprop="dateModified" datetime="2019-05-21T23:51:22+08:00">2019-05-21</time>
+                <time title="修改时间：2019-05-27 21:11:06" itemprop="dateModified" datetime="2019-05-27T21:11:06+08:00">2019-05-27</time>
               
             
           -->
@@ -443,26 +443,20 @@
       
 
       
-        <h3 id="1-备份"><a href="#1-备份" class="headerlink" title="1.备份"></a>1.备份</h3><p>进入yum.repo.d目录下将原来的文件重命名备份</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d</span><br><span class="line">mv CentOS-Base.repo CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure>
-<h3 id="2-下载yum源"><a href="#2-下载yum源" class="headerlink" title="2.下载yum源"></a>2.下载yum源</h3><p>sohu的源：<a href="http://mirrors.sohu.com/help/CentOS-Base-sohu.repo" target="_blank" rel="noopener">http://mirrors.sohu.com/help/CentOS-Base-sohu.repo</a></p>
-<p>163的源：<a href="http://mirrors.163.com/.help/CentOS6-Base-163.repo" target="_blank" rel="noopener">http://mirrors.163.com/.help/CentOS6-Base-163.repo</a></p>
-<p>阿里云的源：<a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-7.repo</a> </p>
-<p>例如更换为阿里云的yum源:</p>
-<p>CentOS7:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
-<p>CentOs6:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br></pre></td></tr></table></figure>
-<h3 id="3-更新yum源"><a href="#3-更新yum源" class="headerlink" title="3.更新yum源"></a>3.更新yum源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update</span><br></pre></td></tr></table></figure>
-<h3 id="4-更新yum源不更新内核"><a href="#4-更新yum源不更新内核" class="headerlink" title="4.更新yum源不更新内核"></a>4.更新yum源不更新内核</h3><p>若更新yum源时不想更新系统内核，则有两种方案：</p>
-<ul>
-<li><p><strong>修改yum的配置文件</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.conf</span><br><span class="line"><span class="meta">#</span>在最后添加</span><br><span class="line">exclude=kernel*</span><br><span class="line">exclude=centos-release*</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>直接在yum的命令后面加上如下的参数</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum --exclude=kernel* update</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+        <h3 id="1-安装npm"><a href="#1-安装npm" class="headerlink" title="1.安装npm"></a>1.安装npm</h3><p>npm命令是node.js的npm 插件管理器，也就是下载插件安装插件的管理器。</p>
+<p>安装命令:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nodejs</span><br></pre></td></tr></table></figure>
+<p>若报错:没有可用软件包 nodejs。</p>
+<p>则先下载epel-release</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release</span><br></pre></td></tr></table></figure>
+<p>安装成功后可查看版本:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p>或:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+<h3 id="2-使用淘宝的cnpm"><a href="#2-使用淘宝的cnpm" class="headerlink" title="2.使用淘宝的cnpm"></a>2.使用淘宝的cnpm</h3><p>因为npm下载都是国外服务器很慢会掉线，我们需要使用淘宝的npm镜像cnpm。</p>
+<p>命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<p>之后就可以使用cnpm下载(将npm命令替换为cnpm即可)</p>
 
       
     </div>
@@ -493,8 +487,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/28/深入剖析HashMap/" rel="next" title="深入剖析HashMap">
-                <i class="fa fa-chevron-left"></i> 深入剖析HashMap
+              <a href="/2017/10/15/CentOS更换yum源/" rel="next" title="CentOS7更换yum源">
+                <i class="fa fa-chevron-left"></i> CentOS7更换yum源
               </a>
             
           </div>
@@ -503,8 +497,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/20/CentOS安装npm和使用cnpm/" rel="prev" title="CentOS7安装npm和使用cnpm">
-                CentOS7安装npm和使用cnpm <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/28/深入剖析HashMap/" rel="prev" title="深入剖析HashMap">
+                深入剖析HashMap <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -662,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-备份"><span class="nav-text">1.备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-下载yum源"><span class="nav-text">2.下载yum源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-更新yum源"><span class="nav-text">3.更新yum源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-更新yum源不更新内核"><span class="nav-text">4.更新yum源不更新内核</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装npm"><span class="nav-text">1.安装npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用淘宝的cnpm"><span class="nav-text">2.使用淘宝的cnpm</span></a></li></ol></div>
             
 
           </div>
